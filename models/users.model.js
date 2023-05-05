@@ -20,7 +20,7 @@ const User = dbUsers.define('users', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  amountUser: {
+  amount: {
     type: DataTypes.INTEGER,
     allowNull: false,
     defaultValue: 1000,

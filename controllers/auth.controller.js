@@ -103,16 +103,17 @@ exports.updatedPassword = catchAsync(async (req, res, next) => {
 exports.renew = catchAync(async (req, res, next) => {
   const { sessionUser } = req;
 
-  const token = await generateJWT(sessionUser.userid);
+  const token = await generateJWT(sessionUser.userId);
 
   return res.status(200).json({
     status: 'success',
     token,
     user: {
-      userid: sessionUser.userid,
+      userId: sessionUser.userId,
       name: sessionUser.name,
-      email: sessionUser.email,
-      role: sessionUser.role,
+      accountNumber: sessionUser.accountNumber,
+      amount: sessionUser.amount,
+      status: sessionUser.status,
     },
   });
 });
