@@ -25,13 +25,13 @@ exports.signup = catchAsync(async (req, res, next) => {
     amount,
   });
 
-  const token = await generateJWT(user.userid);
+  const token = await generateJWT(user.userId);
 
   // 5. enviar la respuesta al cliente
   res.status(201).json({
     message: 'The new user was created',
     user: {
-      userid: user.userid,
+      userId: user.userId,
       name: user.name,
       accountNumber: user.accountNumber,
       amount: user.amount,
