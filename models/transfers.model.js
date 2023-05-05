@@ -8,7 +8,7 @@ const Transfer = dbTransfers.define('transfers', {
         allowNull: false,
         type: DataTypes.INTEGER,
     },
-    amountTransfer: {
+    amount: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
