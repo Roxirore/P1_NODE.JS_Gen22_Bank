@@ -44,17 +44,21 @@ exports.signup = catchAsync (async (req, res, next) => {
 });
 
 
-
 exports.login = catchAsync (async (req, res, next) => {
- const { name, password } = req.body;
 
+ // 1. recibir password y accountNumber de la req.body
+ const { password, accountNumber } = req.body;
+
+ // 2. buscar el usuario con  status: true, accountNumber: accountNumber, password: password
  const user = await User.findOne({
   where: {
-    name,
+    accountNumber,
     status: 'available',
+    password: encryptedPassword,
   },
  })
 
+ // 3. si no existe el usuario enviar un error
  if (!user) {
   return next(new AppError('The user could not be found', 404))
  }
@@ -65,6 +69,7 @@ exports.login = catchAsync (async (req, res, next) => {
 
  const token = await generateJWT(user.userid)
 
+ // 4. enviar la respuesta al cliente
  res.status(200).json({
   status: 'Success',
   user: {
@@ -76,6 +81,8 @@ exports.login = catchAsync (async (req, res, next) => {
   token,
 });
 });
+
+
 
 exports.updatedPassword = catchAsync (async (req, res, next) => {
   const { user } = req;
