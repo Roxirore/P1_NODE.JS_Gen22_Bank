@@ -1,0 +1,17 @@
+En este proyecto, el objetivo es crear un servidor de Express que sea capaz de cubrir los siguientes puntos:
+a. Express
+b. Conectarse a una base de datos
+c. Usar un ORM (Sequelize)
+d. Routers
+e. Arquitectura MVC
+Para la entrega de este proyecto, se debe entregar su enlace de su repositorio en GitHub y formatear su
+código con Prettier. El proyecto no se recibirá de ninguna otra forma excepto por la ya especificada.
+Se solicitan los siguientes requerimientos:
+1. Crear un servidor de Express
+2. Conectarse a una base de datos con Sequelize
+3. Crear los siguientes modelos de acuerdo al diagrama (No se aplican relaciones entre los modelos
+todavía):
+
+
+dbbanktransfers
+dbbankusers 
