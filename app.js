@@ -19,7 +19,7 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/transfers', transfersRouter);
 
 app.all('*', (req, res, next) => {
-  return next(new AppError(`Can't find ${req.originalUrl} on this server`));
+  return next(new AppError(`Can't find ${req.originalUrl} on this server`), 404);
 });
 
 app.use(globalErrorHandler);

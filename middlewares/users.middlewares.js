@@ -3,7 +3,7 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 exports.validUsers = catchAsync((req, res, next) => {
-  const { name, email, password, role, status } = req.body;
+  const { name, accountNumber, password, amount, status } = req.body;
   if (!name) {
     return res.status(400).json({
       status: 'error',
@@ -11,10 +11,10 @@ exports.validUsers = catchAsync((req, res, next) => {
     });
   }
 
-  if (!email) {
+  if (!accountNumber) {
     return res.status(400).json({
       status: 'error',
-      message: 'the email is required',
+      message: 'the accountNumber is required',
     });
   }
 
@@ -25,10 +25,10 @@ exports.validUsers = catchAsync((req, res, next) => {
     });
   }
 
-  if (!role) {
+  if (!amount) {
     return res.status(400).json({
       status: 'error',
-      message: 'the role is required',
+      message: 'the amount is required',
     });
   }
 
