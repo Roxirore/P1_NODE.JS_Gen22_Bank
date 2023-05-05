@@ -4,7 +4,7 @@ const usersMiddlewares = require('./../middlewares/users.middlewares');
 
 // controllers sin userid
 
-exports.findAllUsers = catchAsync (async (req, res) => {
+exports.findAllTransfers = catchAsync (async (req, res) => {
 
     
     const users = await User.findAll({
@@ -13,9 +13,9 @@ exports.findAllUsers = catchAsync (async (req, res) => {
       },
     });
     res.json({
-      message: 'the users were found successfully',
-      results: users.length,
-      users,
+      message: 'the transfers were found successfully',
+      results: transfers.length,
+      transfers,
     });
 
 

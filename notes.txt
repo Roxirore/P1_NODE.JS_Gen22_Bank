@@ -15,3 +15,18 @@ todavía):
 
 dbbanktransfers
 dbbankusers 
+
+
+Para realizar la transferencia, consideren lo siguiente:
+1. Se debe validar que la cuenta destinataria exista, en caso de que no, enviar un error.
+2. Se debe validar que la cuenta remitente cuente con el monto necesario para realizar la transferencia.
+Ejemplo, si el remitente quiere transferir $500 pero solo tiene $300 en su cuenta, la transferencia no
+procede.
+3. Una vez validada la transferencia, a la cuenta destinatario se le debe sumar a su monto el total de la
+transferencia
+4. Se le debe restar a la cuenta remitente el monto de la transferencia.
+Recomendaciones:
+ Asegúrense que su lógica para realizar la transferencia también es correcta
+ Al final, una vez que el servidor quede completo, empiecen a trabajar en las peticiones hacia su
+backend.
+ Si necesitan consultar los números de cuenta de sus usuarios, usen Postman

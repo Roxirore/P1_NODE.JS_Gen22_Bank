@@ -6,34 +6,43 @@ const bcrypt = require('bcryptjs');
 
 exports.signup = catchAsync (async (req, res, next) => {
 
-        
-    const { name, email, password, role } = req.body;
+    // 1.  obtener el name y el password de la req.body    
+    const { name, password } = req.body;
 
+    // 2. generar el accountNumber de 6 digitos
+    const accountNumber = Math.floor(Math.random() * 900000) + 100000;
+    
+    // 3. crear una variable amount con 1000
+    let amount = 1000;
+    
     const salt = await bcrypt.genSalt(10);
     const encryptedPassword = await bcrypt.hash(password, salt);
 
+    // 4. crear el usuario con name accountNumber password y amount
     const user = await User.create({
       name: name.toLowerCase(),
-      email: name.toLowerCase(),
+      accountNumber,
       password: encryptedPassword,
-      role: name.toLowerCase(),
+      amount,
     });
 
     const token = await generateJWT(user.userid);
 
+    // 5. enviar la respuesta al cliente
     res.status(201).json({
       message: 'The new user was created',
       user: {
         userid: user.userid,
         name: user.name,
-        email: user.email,
-        role: user.role,
+        accountNumber: user.accountNumber,
+        amount: user.amount,
       },
       token,
     });
 
 
 });
+
 
 
 exports.login = catchAsync (async (req, res, next) => {

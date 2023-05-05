@@ -3,38 +3,22 @@ const Transfer = require('./../models/transfers.model');
 // //controllers sin id
 
 
-exports.findAllTransfers = catchAsync (async (req, res) => {
+exports.createTransfer = catchAsync (async (req, res) => {
 
 
-    const transfers = await Transfer.findAll({
-      where: {
-        status: 'pending',
-      },
+    const { senderUserId, receiverUserId, monto } =
+        req.body;
+  
+    const transfer = await Transfer.create({
+        senderUserId,
+        receiverUserId,
     });
   
-    res.status(200).json({
-      status: 'success',
-      message: `The pending repairs of user were counted`,
-      results: repairs.length,
-      repairs,
-    });
+    await transfer.update({ amount: (amount ) });
 
-});
-
-exports.createRepair = catchAsync (async (req, res) => {
-
-
-    const { userid, date } =
-      req.body;
-  
-    const repair = await Repair.create({
-      userid,
-      date,
-    });
-  
     res.status(201).json({
       status: 'success',
-      message: 'The repair has been created!',
+      message: 'The transfer has been done!',
       repair,
     });
 
