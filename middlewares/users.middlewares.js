@@ -9,21 +9,21 @@ exports.validUsers = catchAsync((req, res, next) => {
       status: 'error',
       message: 'the name is required',
     });
-}
+  }
 
-if (!email) {
-  return res.status(400).json({
-    status: 'error',
-    message: 'the email is required',
-  });
-}
+  if (!email) {
+    return res.status(400).json({
+      status: 'error',
+      message: 'the email is required',
+    });
+  }
 
-if (!password) {
-  return res.status(400).json({
-    status: 'error',
-    message: 'the password is required',
-  });
-}
+  if (!password) {
+    return res.status(400).json({
+      status: 'error',
+      message: 'the password is required',
+    });
+  }
 
   if (!role) {
     return res.status(400).json({
@@ -42,28 +42,21 @@ if (!password) {
   next();
 });
 
-
-
-
-
-exports.validExistUser = catchAsync (async (req, res, next) => {
-  
+exports.validExistUser = catchAsync(async (req, res, next) => {
   // try {
 
-    const { userid } = req.params;
-  
-    const user = await User.findOne({
-      where: {
-        userid,
-      },
-    });
-  
-    if (!user) {
-      return next(new AppError('User nor found', 404));
+  const { userid } = req.params;
 
-    }
-    
-    req.user = user;
-    next();
+  const user = await User.findOne({
+    where: {
+      userid,
+    },
+  });
 
+  if (!user) {
+    return next(new AppError('User nor found', 404));
+  }
+
+  req.user = user;
+  next();
 });

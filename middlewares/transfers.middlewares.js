@@ -1,8 +1,7 @@
 const Transfer = require('../models/transfers.model');
 const catchAsync = require('../utils/catchAsync');
 
-
-exports.validTransfers = catchAsync ((req, res, next) => {
+exports.validTransfers = catchAsync((req, res, next) => {
   const { amount, senderUserId, receiverUserId } = req.body;
   if (!amount) {
     return res.status(400).json({
@@ -18,7 +17,7 @@ exports.validTransfers = catchAsync ((req, res, next) => {
     });
   }
 
-  if (!receiverUserId ) {
+  if (!receiverUserId) {
     return res.status(400).json({
       status: 'error',
       message: 'the receiverUserId  is required',
@@ -28,7 +27,7 @@ exports.validTransfers = catchAsync ((req, res, next) => {
   next();
 });
 
-exports.validExistTransfer = catchAsync (async (req, res, next) => {
+exports.validExistTransfer = catchAsync(async (req, res, next) => {
   const { id } = req.params;
 
   const transfer = await Transfer.findOne({
